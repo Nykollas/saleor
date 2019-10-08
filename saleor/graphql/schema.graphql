@@ -1,6 +1,6 @@
 schema {
   query: Query
-  mutation: Mutations
+  mutation: Mutation
 }
 
 type AccountAddressCreate {
@@ -1990,7 +1990,7 @@ input MoveProductInput {
   sortOrder: Int
 }
 
-type Mutations {
+type Mutation {
   webhookCreate(input: WebhookCreateInput!): WebhookCreate
   webhookDelete(id: ID!): WebhookDelete
   webhookUpdate(id: ID!, input: WebhookUpdateInput!): WebhookUpdate
@@ -3383,6 +3383,8 @@ type Query {
   serviceAccount(id: ID!): ServiceAccount
   user(id: ID!): User
   node(id: ID!): Node
+  _entities(representations: [_Any]): [_Entity]
+  _service: _Service
 }
 
 type ReducedRate {
@@ -4355,4 +4357,12 @@ enum WeightUnitsEnum {
   LB
   OZ
   G
+}
+
+scalar _Any
+
+union _Entity = Address | ServiceAccount | User
+
+type _Service {
+  sdl: String
 }
